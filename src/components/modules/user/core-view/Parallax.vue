@@ -13,29 +13,34 @@
             <br>
             <br>
             <br>
-            <div id="myDiv" >
-              <h1
-                class="display-2 font-weight-thin mb-2"
-                style="border: 5px solid white; margin-left: 18%; margin-right: 18%; padding: 4%;"
-              >
-                We are
-                <strong class="ball">ONE</strong>, we eat as
-                <strong>FAMILY<v-icon color="red" class="ball">mdi-heart</v-icon></strong>
-              </h1>
+            <div id="myDiv">
+              <div class="artigo_nome">
+                <h1
+                  class="display-2 font-weight-thin mb-2"
+                  style="border: 5px solid white; padding: 2%;"
+                >
+                  We are
+                  <strong>ONE</strong>, we eat as
+                  <strong>
+                    FAMILY
+                    <v-icon color="red" class="ball">mdi-heart</v-icon>
+                  </strong>
+                </h1>
+              </div>
             </div>
           </v-col>
         </v-row>
         <v-row align="center" justify="center" v-else-if="isSmall">
           <v-col class="text-center" cols="12">
-            <div class="text-center">
-              <div id="myDiv" >
-                <h1
-                  style="border: 5px solid white; padding: 5%;"
-                  v-bind:class="isSmall ? this.smallClass : this.bigClass"
-                >
+            <div id="myDiv">
+              <div class="artigo_nome">
+                <h1 class="font-weight-thin mb-1" style="border: 5px solid white; padding: 2%; ">
                   We are
                   <strong>ONE</strong>, we eat as
-                  <strong>FAMILY<v-icon color="red" class="ball">mdi-heart</v-icon></strong>
+                  <strong>
+                    FAMILY
+                    <v-icon color="red" class="ball">mdi-heart</v-icon>
+                  </strong>
                 </h1>
               </div>
             </div>
@@ -47,14 +52,52 @@
 </template>
 
 <style>
+.categoria_lista_artigos .artigo_nome {
+  color: #6e6e6e;
+  width: 234px;
+  height: 34px;
+  margin-left: -2px;
+  border-radius: 5px 5px 0 0;
+  border-left: 2px #aeaeae solid;
+  border-right: 2px #aeaeae solid;
+  border-bottom: 1px #aeaeae solid;
+  position: relative;
+  font-weight: 600;
+  -webkit-box-shadow: 0px -3px 5px #e2e2e2;
+  -moz-box-shadow: 0px -3px 5px #e2e2e2;
+  box-shadow: 0px -3px 5px #e2e2e2;
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #cfcfcf 100%); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #ffffff),
+    color-stop(100%, #cfcfcf)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    top,
+    #ffffff 0%,
+    #cfcfcf 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    top,
+    #ffffff 0%,
+    #cfcfcf 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ffffff 0%, #cfcfcf 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #ffffff 0%, #cfcfcf 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cfcfcf',GradientType=0 ); /* IE6-9 */
+}
 
+.categoria_lista_artigos .artigo_nome div {
+  margin: auto;
+  padding: 4px 13px;
+  vertical-align: middle;
+  line-height: 13px;
+}
 .ball {
-  /* margin-top: 50px; */
-  /* border-radius: 50%; */
   width: 50px;
-  /* height: 50px; */
-  /* background-color: cornflowerblue; */
-  /* border: 2px solid #999; */
   animation: bounce 0.5s infinite alternate;
   -webkit-animation: bounce 0.5s infinite alternate;
 }
@@ -87,7 +130,6 @@
   animation-iteration-count: infinite;
 }
 
-
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes example {
   0% {
@@ -99,7 +141,7 @@
     top: 50px;
   }
   50% {
-   left: -75px;
+    left: -75px;
     top: 50px;
   }
   75% {
@@ -152,24 +194,6 @@ export default {
     this.$bus.$on("desktop-view", dv => {
       this.isSmall = !dv;
     });
-    console.log(this.$vuetify.breakpoint);
-  },
-  computed: {
-    // imageHeight() {
-    //   switch (this.$vuetify.breakpoint.name) {
-    //     case "xs":
-    //       return "220px";
-    //     case "sm":
-    //       this.isSmall = true;
-    //       return "400px";
-    //     case "md":
-    //       return "500px";
-    //     case "lg":
-    //       return "600px";
-    //     case "xl":
-    //       return "800px";
-    //   }
-    // }
   }
 };
 </script>

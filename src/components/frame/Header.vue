@@ -34,7 +34,7 @@
       small
       v-if="$route.name =='viands' || $route.name =='home' || $route.name =='' " 
     >
-      <v-icon>mdi-account</v-icon>
+      <v-icon>mdi-home</v-icon>
     </v-btn>
     <v-divider class="mx-1" inset vertical v-if="$route.name =='viands' || $route.name =='home' || $route.name =='' " ></v-divider>
     <v-btn

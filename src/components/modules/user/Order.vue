@@ -60,8 +60,8 @@ export default {
   },
   computed: {
     ...mapState(["viands_To_Order"]),
-    GetOrders(){
-      return this.$store.getters.getOrders
+    GetOrders() {
+      return this.$store.getters.getOrders;
     }
   },
   mounted() {
@@ -77,6 +77,7 @@ export default {
       }
     });
   },
+
   methods: {
     cancelOrder() {
       this.dialog = false;
@@ -92,7 +93,7 @@ export default {
       // remove selected viand from the order list
       this.GetOrders.forEach(viand => {
         if (id == viand._id) {
-          this.$store.commit("removeOrder", viand._id)
+          this.$store.commit("removeOrder", viand._id);
         }
       });
     },
@@ -113,7 +114,7 @@ export default {
         this.$store
           .dispatch("SendOrder", new_Order)
           .then(res => {
-            setTimeout(() => (this.loading = false), 2000);
+            setTimeout(() => (this.loading = false), 5000);
             setTimeout(() => (this.dialog = false), 500);
             this.$store.state.viands_To_Display.filter(viand => {
               viand._selected = false;

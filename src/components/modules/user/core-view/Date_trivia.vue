@@ -5,27 +5,11 @@
         <v-date-picker v-model="picker" color="green lighten-1"></v-date-picker>
       </v-col>
       <v-col class="text-center" style="font-style: italic">
-        <!-- <br>
+        <br>
         <h1>Fact of the day!</h1>
         <br>
         <div>
           <h2>Amazon.com employees spend two days every two years working at the customer service desk — even the CEO — in order to help all workers understand the customer service process.</h2>
-        </div>-->
-        <div class="artigo_nome">
-          <!-- here is the part that I need help -->
-          <p>Computador Apple Imac 27P I5 3.5Ghz/8Gb/1Tb Md096Po/A</p>
-        </div>
-        <div class="artigo_definicoes round_corner">
-          <!-- <div class="separador_artigo_imagem">
-            <img :src="require('@/assets/logo2.png')" class="imagem_artigo" alt="artigo">
-          </div> -->
-          <div class="artigo_info">
-            Computador Apple Imac 27P I5 3.5Ghz/8Gb/1Tb Md096Po/A
-            <br>
-            <span class="ler_mais">ver mais</span>
-            <br>
-            <span class="comparar">adicionar para comprar</span>
-          </div>
         </div>
       </v-col>
     </v-row>
