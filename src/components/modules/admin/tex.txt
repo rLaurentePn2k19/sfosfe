@@ -1,0 +1,103 @@
+<template>
+  <v-dialog v-model="dialog" persistent max-width="350">
+    <!-- <template v-slot:activator="{ on }">
+      <v-btn fab color="warning" class="mx-1" dark v-on="on" small>
+        <v-icon dark>mdi-pencil</v-icon>
+      </v-btn>
+    </template>
+    <v-card :loading="loading" max-width="350px">
+      <v-toolbar color="orange" dark flat>
+        <v-toolbar-title>Edit viand</v-toolbar-title>
+        <v-spacer/>
+      </v-toolbar>
+      <v-card raised class="pa-2" id="card_image">
+        <v-img
+          class="display-4 flex-grow-2 text-center"
+          height="200px"
+          :src="viand_to_edit.image[0]"
+        >
+          <v-btn color="primary" small @click="updateImage">Update image</v-btn>
+        </v-img>
+      </v-card>
+      <br>
+      <v-card-text>
+        <v-form>
+          <v-text-field
+            label="Viand name"
+            :prepend-icon="'mdi-food-variant'"
+            @click:append="show1 = !show1"
+            v-model="viand_to_edit.name"
+          />
+          <v-file-input
+            dense
+            v-model="imgs"
+            label="Upload Image"
+            accept="/*image"
+            v-show=" show ? true : false"
+          ></v-file-input>
+        </v-form>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="error" @click="cancel">Cancel</v-btn>
+        <v-btn color="success" @click="edit">Save</v-btn>
+      </v-card-actions>
+    </v-card> -->
+  </v-dialog>
+</template>
+
+
+<script>
+import {mapState} from "vuex"
+export default {
+  data() {
+    return {
+      dialog: false,
+      show: false,
+      loading: false,
+      imgs: "",
+      viand_name : "",
+    };
+  },
+  mounted(){
+    this.$bus.$on("edit-viand", data =>{
+      this.dialog = true
+      this.viand_name = data._name
+    })
+  },
+  computed: {
+    ...mapState(['viand_To_Edit'])
+  },
+  methods: {
+    // cancel() {
+    //   this.dialog = false;
+    //   this.loading = false;
+    // },
+    // edit() {
+    //   var viand_update = {
+    //     _id: this.viand_to_edit._id,
+    //     name: this.viand_to_edit.name
+    //   };
+    //   let formData = new FormData();
+    //   formData.append("img", this.imgs);
+    //   formData.append("update_viand", JSON.stringify(viand_update));
+    //   this.$axios
+    //     .put(`http://localhost:4000/admin/updateViand`, formData)
+    //     .then(res => {
+    //       console.log(res.data);
+    //       this.$swal.fire(
+    //         "Update Succesfully",
+    //         " ",
+    //         "success"
+    //       );
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //     });
+    // },
+    // updateImage() {
+    //   this.show = !this.show;
+    // }
+  }
+};
+</script>
