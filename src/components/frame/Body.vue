@@ -4,11 +4,9 @@
   </transition-group>
 </template>
 
-<style>
-
-</style>
 
 <script>
+
 export default {
   name: "appbody",
 };

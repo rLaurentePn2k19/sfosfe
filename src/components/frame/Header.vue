@@ -58,7 +58,7 @@
       <v-icon>mdi-plus</v-icon>
     </v-btn>
     <v-btn text small @click="showLoginForm" v-if="$route.name =='viands' || $route.name =='home' || $route.name =='' " >
-      <v-icon>mdi-logout</v-icon>
+      <v-icon>mdi-login</v-icon>
     </v-btn>
     <AdminLogin></AdminLogin>
   </v-app-bar>

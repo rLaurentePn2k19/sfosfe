@@ -20,9 +20,6 @@ export default {
   components: {
     parallax,
     dateTrivia
-  },
-  beforeCreate() {
-    // alert("welcome");
   }
 };
 </script>

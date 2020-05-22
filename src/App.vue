@@ -7,20 +7,22 @@
     <v-content>
       <Body></Body>
     </v-content>
-    <BotNav v-if="$route.name =='viands' || width "></BotNav>
+    <BotNav v-if="($route.name =='viands' || width)"></BotNav>
+    <Footer v-if="$route.path =='/' || $route.name =='home' "></Footer>
   </v-app>
 </template>
 
 <style>
-#app {
+/* #app {
   margin-bottom: 5%;
-}
+} */
 </style>
 
 <script>
 import Sidebar from "@/components/frame/Sidebar.vue";
 import BotNav from "@/components/frame/BottomNav.vue";
 import Header from "./components/frame/Header.vue";
+import Footer from "./components/frame/Footer.vue";
 import Body from "./components/frame/Body.vue";
 
 export default {
@@ -39,7 +41,8 @@ export default {
     Header,
     Body,
     Sidebar,
-    BotNav
+    BotNav,
+    Footer
   },
   computed: {
     isNav() {
