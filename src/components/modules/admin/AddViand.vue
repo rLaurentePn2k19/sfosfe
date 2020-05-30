@@ -15,7 +15,6 @@
               label="Viand name"
               :prepend-icon="'mdi-food-variant'"
               v-model="viand.name"
-              :rules="[viand.rules.required]"
             />
             <v-file-input dense v-model="viand.imgs" label="Upload Image" accept="/*image"></v-file-input>
           </v-form>
@@ -25,7 +24,6 @@
               label="Title of your fact."
               :prepend-icon="'mdi-food-variant'"
               v-model="facts.title"
-              :rules="[facts.rules.required]"
             />
             <v-textarea
               :prepend-icon="'mdi-pencil-box'"
@@ -34,7 +32,6 @@
               v-model="facts.detail"
               label="Details"
               rows="1"
-              :rules="[facts.rules.required, facts.rules.min]"
             ></v-textarea>
           </v-form>
         </v-card-text>
@@ -67,17 +64,17 @@ export default {
       viand: {
         imgs: [],
         name: "",
-        rules: {
-          required: value => !!value || "Name of viand is required."
-        }
+        // rules: {
+        //   required: value => !!value || "Name of viand is required."
+        // }
       },
       facts: {
         title: "",
         detail: "",
-        rules: {
-          required: value => !!value || "This field is required.",
-          min: value => value >= 50 || "Atleast one sentence"
-        }
+        // rules: {
+        //   required: value => !!value || "This field is required.",
+        //   min: value => value >= 50 || "Atleast one sentence"
+        // }
       }
     };
   },
@@ -96,6 +93,7 @@ export default {
           padding: "3em",
           backdrop: `rgba(255,0,0,0.4)`
         });
+        this.$refs.fact_form.reset();
       } else {
         const fact = {
           title: this.facts.title,
@@ -109,6 +107,8 @@ export default {
               () => (
                 (this.loading = false),
                 (this.dialog = false),
+                (this.facts.title = ""),
+                (this.facts.detail = ""),
                 this.$swal.fire("Successfully added.", " ", "success")
               ),
               2000
@@ -118,8 +118,7 @@ export default {
           .catch(err => {
             console.log(err);
           });
-        this.facts.title = "";
-        this.facts.detail = "";
+        
       }
     },
     clear() {
