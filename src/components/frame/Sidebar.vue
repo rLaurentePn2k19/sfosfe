@@ -40,8 +40,6 @@
 }
 </style>
 <script>
-// import ROUTER from "@/router";
-// import AUTH from "@/services/auth";
 
 export default {
   data() {

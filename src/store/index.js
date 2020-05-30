@@ -114,7 +114,7 @@ export default new Vuex.Store({
     actions: {
         GetUploadedViands({ commit }) { // solved
             return new Promise((resolve, reject) => {
-                http.get("http://localhost:4000/admin/retrieveViands").then(res => {
+                http.get("https://sfos-backend.herokuapp.com/admin/retrieveViands").then(res => {
                     const temp_viand = []
                     res.data.forEach(data => {
                         const viand = {
@@ -135,7 +135,7 @@ export default new Vuex.Store({
         },
         AddViand({ commit }, viand) { // solved
             return new Promise((resolve, reject) => {
-                http.post("http://localhost:4000/admin/addViand", viand).then(res => {
+                http.post("https://sfos-backend.herokuapp.com/admin/addViand", viand).then(res => {
                     const viand = {
                         _id: res.data._id,
                         _selected: false,
@@ -154,7 +154,7 @@ export default new Vuex.Store({
         },
         UpdateViand({ commit }, viand) { // ----------------------
             return new Promise((resolve, reject) => {
-                http.post(`http://localhost:4000/admin/updateViand`, viand).then(res => {
+                http.post(`https://sfos-backend.herokuapp.com/admin/updateViand`, viand).then(res => {
                     const viand = {
                         _id: res.data._id,
                         _selected: false,
@@ -173,7 +173,7 @@ export default new Vuex.Store({
         },
         DeleteViand({ commit }, viand_id) { // solved
             return new Promise((resolve, reject) => {
-                http.delete(`http://localhost:4000/admin/deleteViand/${viand_id}`).then(res => {
+                http.delete(`https://sfos-backend.herokuapp.com/admin/deleteViand/${viand_id}`).then(res => {
                     commit("deleteViand", viand_id)
                     resolve(res.data)
                 }).catch(err => {
@@ -201,7 +201,7 @@ export default new Vuex.Store({
         // Orders 
         SendOrder({ commit }, order) { // solved but have some issues in quantity inputting
             return new Promise((resolve, reject) => {
-                http.post("http://localhost:4000/order/addOrder", order).then(res => {
+                http.post("https://sfos-backend.herokuapp.com/order/addOrder", order).then(res => {
                     commit("setOrders", res.data)
                     resolve(res.data)
                 }).catch(err => {
@@ -211,7 +211,7 @@ export default new Vuex.Store({
         },
         GetOrders() { // solved
             return new Promise((resolve, reject) => {
-                http.get("http://localhost:4000/order/retrieveOrders").then(res => {
+                http.get("https://sfos-backend.herokuapp.com/order/retrieveOrders").then(res => {
                     resolve(res.data.data)
                 }).catch(err => {
                     reject(err)
@@ -221,7 +221,7 @@ export default new Vuex.Store({
         // Facts
         GetFacts({ commit }) {
             return new Promise((resolve, reject) => {
-                http.get("http://localhost:4000/admin/getFact").then(res => {
+                http.get("https://sfos-backend.herokuapp.com/admin/getFact").then(res => {
                     commit("setFacts", res.data)
                     resolve(res.data)
                 }).catch(err => {
@@ -231,7 +231,7 @@ export default new Vuex.Store({
         },
         AddFact({ commit }, fact) {
             return new Promise((resolve, reject) => {
-                http.post("http://localhost:4000/admin/addFact", fact).then(res => {
+                http.post("https://sfos-backend.herokuapp.com/admin/addFact", fact).then(res => {
                     setTimeout(() => {
                         commit("addFact", res.data)
                     }, 2000);
@@ -243,7 +243,7 @@ export default new Vuex.Store({
         },
         DeleteFact({ commit }, fact_id) {
             return new Promise((resolve, reject) => {
-                http.delete(`http://localhost:4000/admin/deleteFact/${fact_id}`).then(res => {
+                http.delete(`https://sfos-backend.herokuapp.com/admin/deleteFact/${fact_id}`).then(res => {
                     console.log(res.data)
                     setTimeout(() => {
                         commit("deleteFact", fact_id)
@@ -256,7 +256,7 @@ export default new Vuex.Store({
         },
         EditFact({ commit }, data) {
             return new Promise((resolve, reject) => {
-                http.put(`http://localhost:4000/admin/updateFact/${data.id}`, data).then(res => {
+                http.put(`https://sfos-backend.herokuapp.com/admin/updateFact/${data.id}`, data).then(res => {
                     setTimeout(() => {
                         commit("addEditedFact", res.data)
                     }, 2000);
