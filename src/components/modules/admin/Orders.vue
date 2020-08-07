@@ -1,81 +1,69 @@
 <template>
-  <v-container fluid>
-    <br>
-    <div class="text-center">
-      <h1 style="font-style: italic;">Orders</h1>
-      <div class="align-end"></div>
-    </div>
+  <div>
+    <OrderedViand/>
 
-    <v-data-iterator
-      :items="order_To_Display"
-      :orders-per-page.sync="length_list"
-      hide-default-footer
-    >
-      <template v-slot:default="props">
-        <v-row>
-          <v-col v-for="order in props.items" :key="order.id" cols="12" sm="6" md="4" lg="3">
-            <v-card>
-              <v-card-title class="subheading font-weight-bold">
-                {{`${order.costumer_name}`}}
-                <v-spacer></v-spacer>
-                <v-btn fab small color="success" @click="check">
-                  <v-icon>mdi-check</v-icon>
-                </v-btn>
-              </v-card-title>
-
-              <v-divider></v-divider>
-
-              <v-list dense v-for="viand in order.viands" :key="viand.id">
-                <v-list-item>
-                  <v-list-item-content>{{viand._name}}</v-list-item-content>
-                  <v-list-item-content class="align-end">{{ viand._qty}}</v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-card>
-          </v-col>
-        </v-row>
-      </template>
-    </v-data-iterator>
-  </v-container>
+    <!-- <v-data-table
+        :loading="show"
+        loading-text="Loading... Please wait"
+        :headers="headers"
+        :items="show ? test : desserts"
+        item-key="name"
+        group-by="category"
+        class="elevation-1"
+    ></v-data-table>-->
+  </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import OrderedViand from "@/components/modules/admin/OrderedViand.vue";
 
 export default {
-  name: "List-Orders",
-  data: () => ({
-    temp_orders: [],
-    currentDateWithFormat: new Date()
-      .toJSON()
-      .slice(0, 10)
-      .replace(/-/g, "/")
-  }),
-  computed: {
-    ...mapState(["order_To_Display"]),
-    length_list() {
-      return this.$store.getters.getOrderToDisplayLength;
-    }
+  name: "Orders",
+  data() {
+    return {
+      show: true,
+      headers: [
+        {
+          text: "Dessert (100g serving)",
+          align: "start",
+          value: "name",
+          sortable: false,
+          groupable: false
+        },
+        {
+          text: "Category",
+          value: "category",
+          groupable: false,
+          align: "right",
+          sortable: false
+        },
+        { text: "Dairy", value: "dairy", align: "right", sortable: false }
+      ],
+      desserts: [
+        {
+          name: "Frozen Yogurt",
+          category: "Ice cream",
+          dairy: "Yes"
+        },
+        {
+          name: "Ice cream sandwich",
+          category: "Ice cream",
+          dairy: "Yes"
+        }
+      ]
+    };
+  },
+  components: {
+    OrderedViand
   },
   mounted() {
-    this.$store
-      .dispatch("GetOrders")
-      .then(res => {
-        for (let i = 0; i < res.length; i++) {
-          if (res[i].date == this.currentDateWithFormat) {
-            this.temp_orders.push(res[i]);
-            this.$store.commit("setOrderToDisplay", this.temp_orders);
-          }
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    setTimeout(() => {
+      this.show = false;
+    }, 2000);
   },
-  methods: {
-    check() {
-      const order_done = console.table(this.items);
-      return order_done;
+  computed: {
+    test() {
+      return [];
     }
   }
 };

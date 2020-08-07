@@ -4,5 +4,6 @@ import ModuleRoutes from './module_routes'
 
 Vue.use(Router)
 export default new Router({
+    mode: 'history',
     routes: ModuleRoutes.routes
 })

@@ -50,18 +50,12 @@ export default new Vuex.Store({
             state.viands_To_Display.push(viand)
         },
         addEditedViand(state, edited_viand) { // -------------------
-            for(let i = 0 ; i<state.viands_To_Display.length ; i++){
+            for (let i = 0; i < state.viands_To_Display.length; i++) {
                 if (edited_viand._id == state.viands_To_Display[i]._id) {
                     state.viands_To_Display.splice(state.viands_To_Display[i], 1)
                 }
             }
             state.viands_To_Display.push(edited_viand)
-            // state.viands_To_Display.forEach(viand => {
-            //     if (edited_viand._id == viand._id) {
-            //         state.viands_To_Display.splice(viand, 1)
-            //     }
-            // });
-            // state.viands_To_Display.push(edited_viand)
         },
         removeOrder(state, id) {
             state.viands_To_Order = state.viands_To_Order.filter(order => {
@@ -134,6 +128,7 @@ export default new Vuex.Store({
             })
         },
         AddViand({ commit }, viand) { // solved
+            console.log(viand, " before upload");
             return new Promise((resolve, reject) => {
                 http.post("https://sfos-backend.herokuapp.com/admin/addViand", viand).then(res => {
                     const viand = {
@@ -209,9 +204,11 @@ export default new Vuex.Store({
                 })
             })
         },
-        GetOrders() { // solved
+        GetOrders({ commit }) { // solved
             return new Promise((resolve, reject) => {
                 http.get("https://sfos-backend.herokuapp.com/order/retrieveOrders").then(res => {
+                    commit("setOrderToDisplay", res.data.data)
+                    console.log(res.data.data);
                     resolve(res.data.data)
                 }).catch(err => {
                     reject(err)

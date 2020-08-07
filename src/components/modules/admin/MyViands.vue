@@ -1,7 +1,6 @@
   <template>
   <div>
     <v-container fluid>
-      <br>
       <div class="text-center">
         <h1 style="font-style: italic;">Viands</h1>
         <div class="align-end"></div>
